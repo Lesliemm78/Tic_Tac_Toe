@@ -14,10 +14,18 @@ const contentTypes: Record<string, string> = {
 
 function resolveFilePath(urlPath = "/"): string {
   const requestedPath = urlPath === "/" ? "/index.html" : urlPath;
-  const decodedPath = decodeURIComponent(requestedPath.split("?")[0]);
-  const filePath = path.resolve(PUBLIC_DIR, `.${decodedPath}`);
+  let decodedPath = "/index.html";
 
-  if (!filePath.startsWith(PUBLIC_DIR)) {
+  try {
+    decodedPath = decodeURIComponent(requestedPath.split("?")[0]);
+  } catch {
+    return path.join(PUBLIC_DIR, "index.html");
+  }
+
+  const filePath = path.resolve(PUBLIC_DIR, `.${decodedPath}`);
+  const relativePath = path.relative(PUBLIC_DIR, filePath);
+
+  if (relativePath.startsWith("..") || path.isAbsolute(relativePath)) {
     return path.join(PUBLIC_DIR, "index.html");
   }
 

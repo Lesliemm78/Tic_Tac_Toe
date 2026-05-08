@@ -12,6 +12,8 @@ const drawScore = document.querySelector("#draw-score");
 
 let board = Array(9).fill(EMPTY);
 let isGameOver = false;
+let isComputerThinking = false;
+let pendingComputerMove = null;
 let scores = {
   player: 0,
   computer: 0,
@@ -47,7 +49,7 @@ function getWinner(currentBoard) {
 function availableMoves(currentBoard) {
   return currentBoard
     .map((mark, index) => (mark ? null : index))
-    .filter((index) => index !== null);
+    .filter(Number.isInteger);
 }
 
 function findFinishingMove(mark) {
@@ -81,16 +83,22 @@ function render() {
   cells.forEach((cell, index) => {
     const mark = board[index];
     cell.textContent = mark;
-    cell.disabled = isGameOver || Boolean(mark);
+    cell.disabled = isGameOver || isComputerThinking || Boolean(mark);
     cell.classList.toggle("player", mark === PLAYER_MARK);
     cell.classList.toggle("computer", mark === COMPUTER_MARK);
     cell.classList.remove("win");
   });
 }
 
+function renderScores() {
+  playerScore.textContent = scores.player;
+  computerScore.textContent = scores.computer;
+  drawScore.textContent = scores.draw;
+}
+
 function finishGame(result) {
   isGameOver = true;
-  result.line.forEach((index) => cells[index].classList.add("win"));
+  isComputerThinking = false;
 
   if (result.mark === PLAYER_MARK) {
     title.textContent = "You Win";
@@ -106,10 +114,9 @@ function finishGame(result) {
     scores.draw += 1;
   }
 
-  playerScore.textContent = scores.player;
-  computerScore.textContent = scores.computer;
-  drawScore.textContent = scores.draw;
+  renderScores();
   render();
+  result.line.forEach((index) => cells[index].classList.add("win"));
 }
 
 function checkGameState() {
@@ -123,12 +130,18 @@ function checkGameState() {
 }
 
 function computerTurn() {
+  pendingComputerMove = null;
   if (isGameOver) return;
 
   const move = getComputerMove();
-  if (move === undefined) return;
+  if (move === undefined) {
+    isComputerThinking = false;
+    render();
+    return;
+  }
 
   board[move] = COMPUTER_MARK;
+  isComputerThinking = false;
 
   if (!checkGameState()) {
     title.textContent = "Your Move";
@@ -138,27 +151,41 @@ function computerTurn() {
 }
 
 function playerTurn(index) {
-  if (isGameOver || board[index]) return;
+  if (isGameOver || isComputerThinking || board[index]) return;
 
   board[index] = PLAYER_MARK;
+  isComputerThinking = true;
   title.textContent = "Thinking";
   statusText.textContent = "Computer is choosing.";
   render();
 
   if (!checkGameState()) {
-    window.setTimeout(computerTurn, 320);
+    pendingComputerMove = window.setTimeout(computerTurn, 320);
+  } else {
+    isComputerThinking = false;
   }
 }
 
 function resetBoard() {
+  if (pendingComputerMove !== null) {
+    window.clearTimeout(pendingComputerMove);
+    pendingComputerMove = null;
+  }
+
   board = Array(9).fill(EMPTY);
   isGameOver = false;
+  isComputerThinking = false;
   title.textContent = "Your Move";
   statusText.textContent = "Pick a square.";
   render();
 }
 
 cells.forEach((cell, index) => {
+  cell.addEventListener("pointerdown", (event) => {
+    if (isGameOver || isComputerThinking || board[index]) {
+      event.preventDefault();
+    }
+  });
   cell.addEventListener("click", () => playerTurn(index));
 });
 
