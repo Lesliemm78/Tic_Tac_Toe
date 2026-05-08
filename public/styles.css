@@ -41,7 +41,7 @@ button {
   margin: 0 auto;
   padding: clamp(8px, 2svh, 18px) 0;
   display: grid;
-  grid-template-rows: auto minmax(0, 1fr);
+  grid-template-rows: auto auto;
   align-content: start;
   gap: clamp(8px, 1.5svh, 14px);
 }
@@ -75,7 +75,6 @@ button {
 }
 
 .game-shell {
-  min-height: 0;
   padding: clamp(10px, 2svh, 24px);
   border: 1px solid rgba(216, 205, 234, 0.42);
   border-radius: 8px;
@@ -85,7 +84,7 @@ button {
     var(--panel);
   box-shadow: var(--shadow);
   display: grid;
-  grid-template-rows: auto minmax(0, 1fr) auto;
+  grid-template-rows: auto auto auto;
 }
 
 .game-heading {
@@ -125,10 +124,9 @@ h1 {
 }
 
 .board {
-  width: min(100%, 390px, 40svh);
+  width: min(100%, 430px, 47svh);
   aspect-ratio: 1;
   margin: 0 auto;
-  align-self: center;
   display: grid;
   grid-template-columns: repeat(3, 1fr);
   grid-template-rows: repeat(3, 1fr);
@@ -203,7 +201,7 @@ h1 {
   }
 
   .board {
-    width: min(100%, 39svh);
+    width: min(100%, 43svh);
     gap: 8px;
   }
 }
@@ -220,7 +218,7 @@ h1 {
   }
 
   .board {
-    width: min(100%, 36svh);
+    width: min(100%, 41svh);
     gap: 8px;
   }
 
