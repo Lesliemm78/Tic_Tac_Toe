@@ -75,6 +75,7 @@ button {
 }
 
 .game-shell {
+  align-self: start;
   padding: clamp(8px, 1.4svh, 16px);
   border: 1px solid rgba(216, 205, 234, 0.42);
   border-radius: 8px;
