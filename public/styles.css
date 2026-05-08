@@ -6,7 +6,8 @@
   --panel: #2a0757;
   --panel-text: #fbf7ff;
   --panel-muted: #d7c7ea;
-  --line: #d8cdea;
+  --line: #cabce5;
+  --cell-edge: #a995cf;
   --board: #f1edff;
   --board-hover: #e8e2ff;
   --player: #b7791f;
@@ -137,10 +138,11 @@ h1 {
 
 .cell {
   min-width: 0;
-  border: 2px solid var(--line);
+  border: 2px solid var(--cell-edge);
   border-radius: 8px;
   color: var(--ink);
   background: var(--board);
+  box-shadow: inset 0 0 0 1px rgba(255, 255, 255, 0.72);
   cursor: pointer;
   font-size: clamp(2rem, min(12vw, 8svh), 4rem);
   font-weight: 900;
@@ -152,9 +154,9 @@ h1 {
 }
 
 .cell:hover:not(:disabled) {
-  border-color: #a78bfa;
+  border-color: #c4b5fd;
   background: var(--board-hover);
-  transform: translateY(-2px);
+  transform: translateY(-1px);
 }
 
 .cell:disabled {
@@ -170,7 +172,7 @@ h1 {
 }
 
 .cell.win {
-  border-color: #a78bfa;
+  border-color: #c4b5fd;
   background: #e9ddff;
 }
 
