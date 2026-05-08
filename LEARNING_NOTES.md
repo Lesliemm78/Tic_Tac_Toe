@@ -2,6 +2,24 @@
 
 This file explains the main changes made while building the mouse-playable Tic Tac Toe game. Use it as a reference when you want to remember what changed, why it changed, and what coding ideas were involved.
 
+## Table of Contents
+
+- [Project Shape](#project-shape)
+- [Browser Deployment](#browser-deployment)
+- [Relative Asset Paths](#relative-asset-paths)
+- [Cache-Busting Asset Versions](#cache-busting-asset-versions)
+- [Layout Structure](#layout-structure)
+- [Fitting the Game on Screen](#fitting-the-game-on-screen)
+- [Purple Panel Sizing](#purple-panel-sizing)
+- [Game State](#game-state)
+- [Preventing Double Moves](#preventing-double-moves)
+- [Resetting Safely](#resetting-safely)
+- [Winner Highlighting](#winner-highlighting)
+- [Local Server Safety](#local-server-safety)
+- [Useful Commands](#useful-commands)
+- [Patterns to Reuse](#patterns-to-reuse)
+- [Index](#index)
+
 ## Project Shape
 
 The project now has two ways to play:
@@ -277,3 +295,27 @@ git diff --check
 - Clear pending timers when resetting state.
 - Keep state variables explicit and named for what they control.
 - Let the live page and local page teach you different things: local is fast for testing, live exposes deployment and caching issues.
+
+## Index
+
+- **`.app`**: The main page wrapper in `public/styles.css`. It controls the overall width, height, spacing, and how the scoreboard and game panel stack.
+- **`.board`**: The 3 by 3 CSS Grid that holds the Tic Tac Toe cells.
+- **`.cell`**: Each clickable square in the board.
+- **`.game-shell`**: The purple game panel around the title, reset button, board, and status text.
+- **`.scoreboard`**: The row of score cards for player wins, draws, and computer wins.
+- **`100svh`**: CSS unit for the small viewport height. Useful when trying to fit an app into the visible browser area.
+- **`align-self: start`**: CSS rule used to stop a grid item from stretching taller than its content.
+- **Asset path**: The URL used to load a CSS or JavaScript file, such as `styles.css`.
+- **Cache busting**: Adding a query string like `?v=20260508-5` to force the browser to fetch a fresh asset.
+- **CSS Grid**: CSS layout system used for the Tic Tac Toe board.
+- **Deployment**: The process of publishing the project online. This project deploys with GitHub Pages.
+- **GitHub Actions**: GitHub automation system. The file `.github/workflows/deploy.yml` tells GitHub how to publish the site.
+- **GitHub Pages**: GitHub's static website hosting. It serves the files from `public/`.
+- **Guard clause**: A quick early return that prevents invalid actions, such as clicking while the computer is thinking.
+- **`height: fit-content`**: CSS rule that makes an element size itself to its content instead of stretching.
+- **`min()`**: CSS function that chooses the smallest value from a list. Used to keep the board from getting too large.
+- **Relative path**: A path like `styles.css`, which loads a file relative to the current HTML file.
+- **Root-relative path**: A path like `/styles.css`, which loads from the root of the domain. This caused trouble on GitHub Pages.
+- **State**: The data that remembers what is happening in the app, such as the board contents or whether the game is over.
+- **`setTimeout`**: JavaScript function that runs code after a delay. Used for the computer move.
+- **`clearTimeout`**: JavaScript function that cancels a pending delayed action. Used when resetting the board.
