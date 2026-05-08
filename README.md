@@ -1,4 +1,4 @@
-# Tic Tac Toe Game
+# tic_tac_toe
 
 This project is a mouse-playable Tic Tac Toe game built with TypeScript and browser JavaScript. The player uses `X`, the computer uses `O`, and the original command-line version is still available.
 
@@ -41,6 +41,21 @@ The browser game uses a local strategy for computer moves, so it works without A
    ```
    npm run cli
    ```
+
+## Deploy Online
+
+This project deploys the static browser game in `public/` with GitHub Pages.
+
+1. In GitHub, open the repository settings.
+2. Go to `Pages`.
+3. Set `Source` to `GitHub Actions`.
+4. Push to `main`, or run the `Deploy Tic Tac Toe` workflow manually.
+
+The published site should be available at:
+
+```
+https://lesliemm78.github.io/aiProject/
+```
 
 ## Game Rules
 
