@@ -54,7 +54,7 @@ This project deploys the static browser game in `public/` with GitHub Pages.
 The published site should be available at:
 
 ```
-https://lesliemm78.github.io/tic_tac_toe/
+https://lesliemm78.github.io/Tic_Tac_Toe/
 ```
 
 ## Game Rules
