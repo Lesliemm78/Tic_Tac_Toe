@@ -36,12 +36,12 @@ button {
 
 .app {
   width: min(92vw, 720px);
-  min-height: 100vh;
+  min-height: 100svh;
   margin: 0 auto;
-  padding: 28px 0;
+  padding: clamp(12px, 3svh, 28px) 0;
   display: grid;
   align-content: center;
-  gap: 18px;
+  gap: clamp(10px, 2svh, 18px);
 }
 
 .scoreboard {
@@ -51,8 +51,8 @@ button {
 }
 
 .scoreboard div {
-  min-height: 74px;
-  padding: 14px;
+  min-height: clamp(52px, 10svh, 74px);
+  padding: clamp(8px, 1.8svh, 14px);
   border: 1px solid var(--line);
   border-radius: 8px;
   background: rgba(255, 255, 255, 0.62);
@@ -69,11 +69,11 @@ button {
 }
 
 .scoreboard strong {
-  font-size: 1.7rem;
+  font-size: clamp(1.2rem, 3svh, 1.7rem);
 }
 
 .game-shell {
-  padding: clamp(18px, 4vw, 32px);
+  padding: clamp(12px, 3svh, 32px);
   border: 1px solid rgba(216, 205, 234, 0.42);
   border-radius: 8px;
   color: var(--panel-text);
@@ -88,7 +88,7 @@ button {
   align-items: center;
   justify-content: space-between;
   gap: 16px;
-  margin-bottom: 22px;
+  margin-bottom: clamp(10px, 2.5svh, 22px);
 }
 
 .eyebrow {
@@ -101,7 +101,7 @@ button {
 
 h1 {
   margin: 0;
-  font-size: clamp(2rem, 8vw, 4.8rem);
+  font-size: clamp(1.9rem, min(8vw, 8svh), 4.8rem);
   line-height: 0.95;
 }
 
@@ -120,7 +120,7 @@ h1 {
 }
 
 .board {
-  width: min(100%, 480px);
+  width: min(100%, 480px, 58svh);
   aspect-ratio: 1;
   margin: 0 auto;
   display: grid;
@@ -136,7 +136,7 @@ h1 {
   color: var(--ink);
   background: var(--board);
   cursor: pointer;
-  font-size: clamp(3rem, 17vw, 6rem);
+  font-size: clamp(2.4rem, min(17vw, 14svh), 6rem);
   font-weight: 900;
   line-height: 1;
   transition:
@@ -170,7 +170,7 @@ h1 {
 
 .status {
   min-height: 28px;
-  margin: 20px 0 0;
+  margin: clamp(10px, 2svh, 20px) 0 0;
   color: var(--panel-muted);
   font-size: 1rem;
   font-weight: 700;
@@ -180,7 +180,7 @@ h1 {
 @media (max-width: 520px) {
   .app {
     width: min(94vw, 420px);
-    padding: 16px 0;
+    padding: 12px 0;
   }
 
   .scoreboard {
@@ -188,7 +188,7 @@ h1 {
   }
 
   .scoreboard div {
-    min-height: 64px;
+    min-height: 58px;
     padding: 10px;
   }
 
@@ -197,6 +197,28 @@ h1 {
   }
 
   .board {
+    width: min(100%, 62svh);
     gap: 8px;
+  }
+}
+
+@media (max-height: 720px) {
+  .eyebrow {
+    margin-bottom: 2px;
+    font-size: 0.7rem;
+  }
+
+  .icon-button {
+    width: 40px;
+    height: 40px;
+  }
+
+  .board {
+    width: min(100%, 50svh);
+    gap: 8px;
+  }
+
+  .status {
+    font-size: 0.92rem;
   }
 }
