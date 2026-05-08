@@ -75,7 +75,7 @@ button {
 }
 
 .game-shell {
-  padding: clamp(10px, 2svh, 24px);
+  padding: clamp(8px, 1.4svh, 16px);
   border: 1px solid rgba(216, 205, 234, 0.42);
   border-radius: 8px;
   color: var(--panel-text);
@@ -92,7 +92,7 @@ button {
   align-items: center;
   justify-content: space-between;
   gap: 16px;
-  margin-bottom: clamp(6px, 1.3svh, 14px);
+  margin-bottom: clamp(4px, 0.8svh, 8px);
 }
 
 .eyebrow {
@@ -124,7 +124,7 @@ h1 {
 }
 
 .board {
-  width: min(100%, 430px, 47svh);
+  width: min(100%, 450px, 50svh);
   aspect-ratio: 1;
   margin: 0 auto;
   display: grid;
@@ -174,7 +174,7 @@ h1 {
 
 .status {
   min-height: 28px;
-  margin: clamp(6px, 1.2svh, 12px) 0 0;
+  margin: clamp(4px, 0.8svh, 8px) 0 0;
   color: var(--panel-muted);
   font-size: 1rem;
   font-weight: 700;
@@ -201,7 +201,7 @@ h1 {
   }
 
   .board {
-    width: min(100%, 43svh);
+    width: min(100%, 46svh);
     gap: 8px;
   }
 }
@@ -218,7 +218,7 @@ h1 {
   }
 
   .board {
-    width: min(100%, 41svh);
+    width: min(100%, 44svh);
     gap: 8px;
   }
 
